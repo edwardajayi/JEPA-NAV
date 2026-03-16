@@ -15,22 +15,20 @@ build/
 data/replicacad_vjepa2_frames/
 
 # Markdown (do not commit; keep only root README)
+markdown/
 *.md
 !/README.md
 
-# Logs and checkpoints
+# Logs, checkpoints, notebooks
 logs/
 checkpoints/
+notebooks/
 
 # Build / temp
 tmp/
 *.out
 *.err
-tex/*.aux
-tex/*.log
-tex/*.bbl
-tex/*.blg
-tex/*.synctex.gz
+tex/
 
 # IDE / OS
 .idea/
