@@ -1,7 +1,0 @@
-2026-03-16T17:29:40.822157 | scene=van-gogh-room.glb | episodes=5 | Success rate: 0.0% | SPL: 0.000 | Collisions/ep: 9.60
-2026-03-16T17:32:08.880308 | scene=van-gogh-room.glb | episodes=5 | Success rate: 0.0% | SPL: 0.000 | Collisions/ep: 9.60
-2026-03-16T17:32:13.797830 | scene=van-gogh-room.glb | episodes=4 | Success rate: 0.0% | SPL: 0.000 | Collisions/ep: 9.25
-2026-03-16T17:34:13.791607 | scene=van-gogh-room.glb | episodes=4 | Success rate: 0.0% | SPL: 0.000 | Collisions/ep: 9.25
-2026-03-16T17:42:29.385372 | scene=van-gogh-room.glb | episodes=80 | Success rate: 6.2% | SPL: 0.000 | Collisions/ep: 7.88
-2026-03-16T17:58:39.211146 | scene=van-gogh-room.glb | episodes=150 | Success rate: 4.7% | SPL: 0.000 | Collisions/ep: 9.05
-2026-03-16T17:59:35.411918 | scene=van-gogh-room.glb | episodes=120 | Success rate: 5.8% | SPL: 0.000 | Collisions/ep: 9.43
