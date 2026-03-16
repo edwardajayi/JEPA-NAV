@@ -14,7 +14,26 @@ build/
 # Experiment outputs (large)
 data/replicacad_vjepa2_frames/
 
+# Markdown (do not commit; keep only root README)
+*.md
+!/README.md
+
+# Logs and checkpoints
+logs/
+checkpoints/
+
+# Build / temp
+tmp/
+*.out
+*.err
+tex/*.aux
+tex/*.log
+tex/*.bbl
+tex/*.blg
+tex/*.synctex.gz
+
 # IDE / OS
 .idea/
 .vscode/
+.cursor/
 .DS_Store
