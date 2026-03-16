@@ -30,6 +30,10 @@ tmp/
 *.err
 tex/
 
+# Zip and stray root files (conda artifact placeholders, etc.)
+*.zip
+conda-forge::*
+
 # IDE / OS
 .idea/
 .vscode/
