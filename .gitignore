@@ -1,0 +1,20 @@
+# Persistent conda env (see markdown/INSTALL_HABITAT_SIM.md)
+.conda_env/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# Experiment outputs (large)
+data/replicacad_vjepa2_frames/
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store

@@ -1,0 +1,21 @@
+[16:59:59:509886]:[Warning]:[Metadata] SceneDatasetAttributes.cpp(107)::addNewSceneInstanceToDataset : Dataset : 'default' : Lighting Layout Attributes 'no_lights' specified in Scene Attributes but does not exist in dataset, so creating default.
+[16:59:59:523713]:[Warning]:[Scene] SemanticScene.h(331)::checkFileExists : ::loadSemanticSceneDescriptor: File `/ocean/projects/cis250225p/eajayi1/JEPANAV/data/versioned_data/habitat_test_scenes/van-gogh-room.scn` does not exist.  Aborting load.
+[16:59:59:523861]:[Warning]:[Scene] SemanticScene.cpp(123)::loadSemanticSceneDescriptor : SSD File Naming Issue! Neither SemanticAttributes-provided name : `/ocean/projects/cis250225p/eajayi1/JEPANAV/data/versioned_data/habitat_test_scenes/van-gogh-room.scn` nor constructed filename : `/ocean/projects/cis250225p/eajayi1/JEPANAV/data/versioned_data/habitat_test_scenes/info_semantic.json` exist on disk.
+[16:59:59:523909]:[Error]:[Scene] SemanticScene.cpp(139)::loadSemanticSceneDescriptor : SSD Load Failure! File with SemanticAttributes-provided name `/ocean/projects/cis250225p/eajayi1/JEPANAV/data/versioned_data/habitat_test_scenes/van-gogh-room.scn` exists but failed to load.
+[17:00:00:553492]:[Warning]:[Sim] Simulator.cpp(595)::instanceStageForSceneAttributes : The active scene does not contain semantic annotations : activeSemanticSceneID_ = 0
+Traceback (most recent call last):
+  File "/ocean/projects/cis250225p/eajayi1/JEPANAV/scripts/train_pointnav_vjepa2_simple_scene.py", line 191, in <module>
+    sys.exit(main())
+  File "/ocean/projects/cis250225p/eajayi1/JEPANAV/scripts/train_pointnav_vjepa2_simple_scene.py", line 179, in main
+    return train(
+  File "/ocean/projects/cis250225p/eajayi1/JEPANAV/scripts/train_pointnav_vjepa2_simple_scene.py", line 113, in train
+    rewards, log_probs, values, success, num_collisions, actual_path_len, optimal_path_len = run_episode(
+  File "/ocean/projects/cis250225p/eajayi1/JEPANAV/scripts/train_pointnav_vjepa2.py", line 240, in run_episode
+    obs = apply_action_sim(sim, action)
+  File "/ocean/projects/cis250225p/eajayi1/JEPANAV/scripts/train_pointnav_vjepa2.py", line 158, in apply_action_sim
+    return sim.step(ACTION_NAMES[action])
+  File "/ocean/projects/cis250225p/eajayi1/JEPANAV/.conda_env/lib/python3.9/site-packages/habitat_sim-0.3.3-py3.9-linux-x86_64.egg/habitat_sim/simulator.py", line 482, in step
+    collided_dict[agent_id] = agent.act(agent_act)
+  File "/ocean/projects/cis250225p/eajayi1/JEPANAV/.conda_env/lib/python3.9/site-packages/habitat_sim-0.3.3-py3.9-linux-x86_64.egg/habitat_sim/agent/agent.py", line 182, in act
+    assert (
+AssertionError: No action stop in action space

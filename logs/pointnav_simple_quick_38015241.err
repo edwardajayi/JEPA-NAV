@@ -1,0 +1,13 @@
+[17:18:37:363490]:[Warning]:[Metadata] SceneDatasetAttributes.cpp(107)::addNewSceneInstanceToDataset : Dataset : 'default' : Lighting Layout Attributes 'no_lights' specified in Scene Attributes but does not exist in dataset, so creating default.
+[17:18:37:364348]:[Warning]:[Scene] SemanticScene.h(331)::checkFileExists : ::loadSemanticSceneDescriptor: File `/ocean/projects/cis250225p/eajayi1/JEPANAV/data/versioned_data/habitat_test_scenes/van-gogh-room.scn` does not exist.  Aborting load.
+[17:18:37:364401]:[Warning]:[Scene] SemanticScene.cpp(123)::loadSemanticSceneDescriptor : SSD File Naming Issue! Neither SemanticAttributes-provided name : `/ocean/projects/cis250225p/eajayi1/JEPANAV/data/versioned_data/habitat_test_scenes/van-gogh-room.scn` nor constructed filename : `/ocean/projects/cis250225p/eajayi1/JEPANAV/data/versioned_data/habitat_test_scenes/info_semantic.json` exist on disk.
+[17:18:37:364441]:[Error]:[Scene] SemanticScene.cpp(139)::loadSemanticSceneDescriptor : SSD Load Failure! File with SemanticAttributes-provided name `/ocean/projects/cis250225p/eajayi1/JEPANAV/data/versioned_data/habitat_test_scenes/van-gogh-room.scn` exists but failed to load.
+[17:18:38:075974]:[Warning]:[Sim] Simulator.cpp(595)::instanceStageForSceneAttributes : The active scene does not contain semantic annotations : activeSemanticSceneID_ = 0
+Traceback (most recent call last):
+  File "/ocean/projects/cis250225p/eajayi1/JEPANAV/scripts/train_pointnav_vjepa2_simple_scene.py", line 211, in <module>
+    sys.exit(main())
+  File "/ocean/projects/cis250225p/eajayi1/JEPANAV/scripts/train_pointnav_vjepa2_simple_scene.py", line 199, in main
+    return train(
+  File "/ocean/projects/cis250225p/eajayi1/JEPANAV/scripts/train_pointnav_vjepa2_simple_scene.py", line 148, in train
+    advantage = returns - values_t.detach()
+RuntimeError: The size of tensor a (128) must match the size of tensor b (127) at non-singleton dimension 0

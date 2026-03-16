@@ -1,0 +1,263 @@
+\documentclass{article}
+
+% if you need to pass options to natbib, use, e.g.:
+%     \PassOptionsToPackage{numbers, compress}{natbib}
+% before loading neurips_2025
+
+% The authors should use one of these tracks.
+% Before accepting by the NeurIPS conference, select one of the options below.
+% 0. "default" for submission
+ % \usepackage{neurips_2025}
+ \usepackage[main, final]{neurips_2025}
+% the "default" option is equal to the "main" option, which is used for the Main Track with double-blind reviewing.
+% 1. "main" option is used for the Main Track
+%  \usepackage[main]{neurips_2025}
+% 2. "position" option is used for the Position Paper Track
+%  \usepackage[position]{neurips_2025}
+% 3. "dandb" option is used for the Datasets & Benchmarks Track
+ % \usepackage[dandb]{neurips_2025}
+% 4. "creativeai" option is used for the Creative AI Track
+%  \usepackage[creativeai]{neurips_2025}
+% 5. "sglblindworkshop" option is used for the Workshop with single-blind reviewing
+ % \usepackage[sglblindworkshop]{neurips_2025}
+% 6. "dblblindworkshop" option is used for the Workshop with double-blind reviewing
+%  \usepackage[dblblindworkshop]{neurips_2025}
+
+% After being accepted, the authors should add "final" behind the track to compile a camera-ready version.
+% 1. Main Track
+ % \usepackage[main, final]{neurips_2025}
+% 2. Position Paper Track
+%  \usepackage[position, final]{neurips_2025}
+% 3. Datasets & Benchmarks Track
+ % \usepackage[dandb, final]{neurips_2025}
+% 4. Creative AI Track
+%  \usepackage[creativeai, final]{neurips_2025}
+% 5. Workshop with single-blind reviewing
+%  \usepackage[sglblindworkshop, final]{neurips_2025}
+% 6. Workshop with double-blind reviewing
+%  \usepackage[dblblindworkshop, final]{neurips_2025}
+% Note. For the workshop paper template, both \title{} and \workshoptitle{} are required, with the former indicating the paper title shown in the title and the latter indicating the workshop title displayed in the footnote.
+% For workshops (5., 6.), the authors should add the name of the workshop, "\workshoptitle" command is used to set the workshop title.
+% \workshoptitle{WORKSHOP TITLE}
+
+% "preprint" option is used for arXiv or other preprint submissions
+ % \usepackage[preprint]{neurips_2025}
+
+% to avoid loading the natbib package, add option nonatbib:
+%    \usepackage[nonatbib]{neurips_2025}
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{xcolor}         % colors
+\PassOptionsToPackage{numbers, compress}{natbib}
+
+% Note. For the workshop paper template, both \title{} and \workshoptitle{} are required, with the former indicating the paper title shown in the title and the latter indicating the workshop title displayed in the footnote. 
+\title{JEPA‑NAV: A Vision-Based Joint Embedding Architecture for Safe Indoor Navigation}
+
+
+% The \author macro works with any number of authors. There are two commands
+% used to separate the names and addresses of multiple authors: \And and \AND.
+%
+% Using \And between authors leaves it to LaTeX to determine where to break the
+% lines. Using \AND forces a line break at that point. So, if LaTeX puts 3 of 4
+% authors names on the first line, and the last on the second line, try using
+% \AND instead of \And before the third author name.
+
+
+% \author{%
+%   David S.~Hippocampus\thanks{Use footnote for providing further information
+%     about author (webpage, alternative address)---\emph{not} for acknowledging
+%     funding agencies.} \\
+%   Department of Computer Science\\
+%   Cranberry-Lemon University\\
+%   Pittsburgh, PA 15213 \\
+%   \texttt{hippo@cs.cranberry-lemon.edu} \\
+%   % examples of more authors
+%   % \And
+%   % Coauthor \\
+%   % Affiliation \\
+%   % Address \\
+%   % \texttt{email} \\
+%   % \AND
+%   % Coauthor \\
+%   % Affiliation \\
+%   % Address \\
+%   % \texttt{email} \\
+%   % \And
+%   % Coauthor \\
+%   % Affiliation \\
+%   % Address \\
+%   % \texttt{email} \\
+%   % \And
+%   % Coauthor \\
+%   % Affiliation \\
+%   % Address \\
+%   % \texttt{email} \\
+%   }
+
+\author{
+Edward Ajayi\thanks{Carnegie Mellon University Africa, Kigali, Rwanda. \texttt{eaajayi@andrew.cmu.edu}} \\
+CMU Africa, Kigali, Rwanda \\
+\texttt{eaajayi@andrew.cmu.edu}
+\And
+Emrys Lasidlaus\thanks{Carnegie Mellon University Africa, Kigali, Rwanda. \texttt{eladisla@andrew.cmu.edu}} \\
+CMU Africa, Kigali, Rwanda \\
+\texttt{eladisla@andrew.cmu.edu}
+}
+
+
+\begin{document}
+
+
+\maketitle
+
+
+\begin{abstract}
+Navigating indoor environments is challenging for visually impaired individuals due to cluttered layouts, dynamic obstacles, and partial observability. Existing vision-based assistive systems often rely on specialized hardware, fail to generalize to unseen environments, and rarely provide safety-aware predictions with quantified uncertainty. We propose \textbf{JEPA-NAV}, a vision-first system that leverages Joint Embedding Predictive Architectures (JEPA)---specifically V-JEPA 2---to learn predictive latent representations of indoor scenes. These embeddings support affordance prediction (walkable areas, obstacles, and risky zones) with associated uncertainty, integrated into a risk-aware navigation planner. Our midterm establishes the V-JEPA 2 encoder pipeline validated on ReplicaCAD, implements the full baseline (V-JEPA 2 + MLP policy for PointNav in Habitat-Sim), and reports baseline metrics from a simple-scene run: success rate, SPL, and collisions per episode.
+\end{abstract}
+
+%==============================================================================
+\section{Introduction}
+%==============================================================================
+
+\subsection{Motivation}
+Indoor navigation remains a significant challenge for visually impaired individuals seeking independent mobility. Effective assistive systems must perceive obstacles, identify walkable paths, and anticipate hazards while accounting for uncertainty. Navigation becomes particularly difficult when models encounter unfamiliar environments \cite{najjar2022dynamic}, as traditional approaches often fail to generalize and rarely provide safety-aware predictions.
+
+\subsection{Problem Definition}
+We address the problem of \textbf{safe, vision-based indoor navigation} that: (1) \textbf{Generalizes} to previously unseen indoor layouts without task-specific retraining; (2) \textbf{Predicts} environmental affordances (walkable zones, obstacles, hazards) from visual input; (3) \textbf{Quantifies uncertainty} in these predictions to support risk-aware path planning; (4) \textbf{Operates} in simulation (and potentially on low-cost devices) using primarily RGB input, with optional depth or other modalities.
+
+We use \textbf{V-JEPA 2} as our visual backbone and baseline: a policy that maps V-JEPA 2 embeddings and goal to navigation actions. Our full method, JEPA-NAV, extends this baseline by adding affordance prediction, uncertainty modeling, and a risk-aware planner.
+
+%==============================================================================
+\section{Related Works}
+%==============================================================================
+
+\subsection{Vision-Based Assistive Navigation}
+Previous work has explored vision-based support for indoor navigation for visually impaired users. \cite{li2018vision} proposed a system that constructs semantic indoor maps, performs real-time obstacle detection using an RGB-D camera, and provides multimodal feedback via audio and haptics, demonstrating improved navigation safety and independence. \cite{na2024improving} focused on walking path generation for a robotic SmartCane, integrating human motion constraints and motion primitives to guide users in indoor environments. Both studies highlight the importance of real-time perception and path planning but rely heavily on specialized hardware and system-specific configurations.
+
+\subsection{Predictive Visual Representations and JEPA}
+Recent advances in predictive visual representations offer new opportunities for generalizable navigation. \cite{miao_jepa-vla_2026} introduced JEPA-VLA, integrating predictive video embeddings into vision-language-action models to capture task-relevant temporal dynamics while ignoring unpredictable factors, improving sample efficiency and generalization. \textbf{V-JEPA 2} \cite{assran2025v} is a self-supervised video model trained on large-scale video data to learn joint predictive embeddings capable of understanding, predicting, and planning in physical environments. These representations form the basis for our baseline and for JEPA-NAV.
+
+\subsection{Gaps We Address}
+\begin{itemize}
+    \item First application of JEPA-based (V-JEPA 2) predictive embeddings for assistive indoor navigation in a reproducible pipeline.
+    \item Uncertainty-aware affordance prediction on top of JEPA embeddings for risk-aware path planning.
+    \item Vision-first, generalizable pipeline evaluated in standard simulators (Habitat) with public datasets, establishing a reproducible baseline for future research.
+\end{itemize}
+
+%==============================================================================
+\section{Dataset Description}
+%==============================================================================
+
+We use \textbf{ReplicaCAD} (Habitat) for encoder validation and planned ReplicaCAD PointNav training. ReplicaCAD is an artist-created 3D indoor dataset based on the FRL apartment from Replica; it is designed for Habitat and supports embodied navigation and interaction. For the midterm baseline run we also use a \textbf{simple .glb scene} (Habitat test scene: van-gogh-room.glb) in Habitat-Sim when ReplicaCAD requires Bullet and the full install is pending.
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{lll}
+\toprule
+\textbf{Dataset / Simulator} & \textbf{Description} & \textbf{Use in Project} \\
+\midrule
+ReplicaCAD & 84 scene instances, navmeshes, stages; CC BY 4.0. & RGB frames; V-JEPA 2 encoder validation. \\
+Habitat-Sim & 3D simulator; loads ReplicaCAD or .glb scenes. & RGB observations; PointNav training. \\
+Simple .glb (van-gogh-room) & Single mesh, Habitat test scene. & Midterm baseline run (no Bullet). \\
+\bottomrule
+\end{tabular}
+\caption{Datasets and simulators used.}
+\label{tab:dataset}
+\end{table}
+
+\textbf{Dataset statistics (midterm):} Scenes: 84 ReplicaCAD instances (e.g.\ \texttt{apt\_0}); 80 RGB frames (256$\times$256) collected from \texttt{apt\_0} for encoder validation. Source: Hugging Face \texttt{ai-habitat/ReplicaCAD\_dataset}. Baseline PointNav runs reported here use van-gogh-room.glb (Habitat test scene).
+
+% Optional: \textbf{Figure 1:} Sample RGB frames from ReplicaCAD or van-gogh-room (add \includegraphics when figure is ready).
+
+%==============================================================================
+\section{Baseline Implementation and Results}
+%==============================================================================
+
+\subsection{Baseline Definition}
+Our \textbf{baseline} is a V-JEPA 2--based navigation agent: \textbf{Input:} RGB observation from the Habitat agent. \textbf{Encoder:} V-JEPA 2 (pretrained), producing a 1024-d latent embedding per frame (16-frame clip, mean-pooled). \textbf{Policy:} MLP that takes the embedding and goal (distance to target, angle $\theta$) and outputs four actions: forward, turn left, turn right, stop. \textbf{Training:} Policy gradient (actor-critic) for the PointNav task. \textbf{No} affordance head, \textbf{no} explicit uncertainty module, and \textbf{no} risk-aware planner in the baseline. This baseline is the same representation we will use in JEPA-NAV.
+
+\subsection{Implementation}
+We implemented: (A) V-JEPA 2 sanity check and encoder validation on ReplicaCAD frames; (B) ReplicaCAD frame collection and V-JEPA 2 encoder stats; (C) Full baseline: \texttt{train\_pointnav\_vjepa2.py} (ReplicaCAD + Bullet) and \texttt{train\_pointnav\_vjepa2\_simple\_scene.py} (simple .glb scene, no Bullet). V-JEPA 2: \texttt{facebook/vjepa2-vitl-fpc64-256}; 16-frame clip 256$\times$256 $\to$ mean-pooled 1024-d. Policy: MLP(1024+2 $\to$ 256 $\to$ 4). Success threshold: 0.36\,m. Metrics: Success Rate (\%), SPL, Collisions per episode (mean). All implemented and logged to \texttt{logs/pointnav\_simple\_results.txt}.
+
+\subsection{Metrics}
+We report \textbf{Success Rate} (fraction of episodes where the agent reaches the goal within 0.36\,m), \textbf{SPL} (success weighted by path length), and \textbf{Collisions per episode} (mean over episodes), as in standard Habitat PointNav benchmarks.
+
+\subsection{Encoder Validation Results}
+V-JEPA 2 encoder output on our inputs: Phase A (sanity): 4 images $\to$ 16-frame clip (256$\times$256), output shape (1, 2048, 1024), mean 0.013, std 3.23. ReplicaCAD: 80 Habitat frames $\to$ 16-frame clip, output shape (1, 2048, 1024), mean 0.019, std 3.03.
+
+\subsection{Baseline PointNav Results}
+We ran the full pipeline on a simple .glb scene (van-gogh-room.glb) in Habitat-Sim with the same V-JEPA 2 + MLP policy and policy gradient training. All reported runs use \textbf{one scene} (van-gogh-room); each \textbf{episode} is one navigation trial (one start--goal pair, up to 50 steps) within that scene. Short validation runs (4--5 episodes) and an extended run (80 episodes) completed successfully. Results are in Table~\ref{tab:baseline}.
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Run} & \textbf{Scene} & \textbf{Episodes} & \textbf{Success Rate (\%)} & \textbf{SPL} & \textbf{Collisions/ep} \\
+\midrule
+Short (4 ep)  & van-gogh-room & 4 & 0.0 & 0.000 & 9.25 \\
+Tiny (5 ep)  & van-gogh-room & 5 & 0.0 & 0.000 & 9.60 \\
+Extended (80 ep) & van-gogh-room & 80 & 6.2 & 0.000 & 7.88 \\
+\bottomrule
+\end{tabular}
+\caption{Baseline (V-JEPA 2 + policy) on simple scene. Same scene and max 50 steps/episode; only number of training episodes varies.}
+\label{tab:baseline}
+\end{table}
+
+\paragraph{Ablation: effect of number of training episodes.}
+We varied the number of training episodes (4, 5, 80) while keeping the same scene (van-gogh-room.glb), same max steps per episode (50), and same architecture. With more episodes, success rate increases (0\% $\to$ 6.2\% for 80 episodes) and mean collisions per episode decrease (9.60 $\to$ 7.88), showing that the policy benefits from additional training. This ablation confirms that the baseline pipeline learns with more data and supports reporting the 80-episode run as the stronger baseline configuration.
+
+The pipeline runs end-to-end; the reported metrics are computed as in Habitat PointNav. ReplicaCAD-based training (with Habitat-Sim built with Bullet) will be run when the cluster install completes; the same metrics and scripts apply.
+
+%==============================================================================
+\section{Methodology}
+%==============================================================================
+
+\subsection{How JEPA-NAV Extends the Baseline}
+JEPA-NAV keeps the same V-JEPA 2 encoder and adds: (1) \textbf{Affordance prediction:} a head on top of V-JEPA 2 embeddings that predicts walkable regions, obstacles, and hazard zones (spatial map or per-patch labels); (2) \textbf{Uncertainty modeling:} probabilistic or ensemble output for confidence/uncertainty per prediction; (3) \textbf{Risk-aware path planning:} a planner that uses the affordance map and uncertainty to produce paths minimizing collision risk and preferring high-confidence walkable regions. The agent then follows this plan or a policy conditioned on it. This addresses the gaps: generalizable predictive representations plus explicit affordance and uncertainty for safer, assistive indoor navigation.
+
+\subsection{Pipeline Overview}
+RGB (video) $\to$ V-JEPA 2 $\to$ embeddings $\to$ Affordance head $\to$ walkable/obstacle/hazard map + uncertainty $\to$ Risk-aware planner $\to$ path/cost map $\to$ Policy/controller $\to$ actions.
+
+\subsection{Planned Evaluation (Post-Midterm)}
+Same metrics as baseline (Success Rate, SPL, Collisions/ep); additional affordance prediction accuracy and uncertainty calibration; comparison of JEPA-NAV vs.\ V-JEPA 2 baseline on the same eval episodes and scenes.
+
+%==============================================================================
+\section{Division of Work}
+%==============================================================================
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{ll}
+\toprule
+\textbf{Team Member} & \textbf{Contributions} \\
+\midrule
+Edward Ajayi & Literature review, V-JEPA 2 integration, training scripts and SLURM jobs, simple-scene pipeline and experiments, report writing. \\
+Emrys Lasidlaus & Habitat/ReplicaCAD setup, dataset documentation, baseline design and metrics, report writing. \\
+\bottomrule
+\end{tabular}
+\caption{Division of work.}
+\label{tab:division}
+\end{table}
+
+We split the encoder pipeline and ReplicaCAD/dataset setup between the two members; merged for the ReplicaCAD run and the simple-scene baseline experiments; co-wrote the report.
+
+%==============================================================================
+\section{Reproducibility and Code}
+%==============================================================================
+
+Code, configs, and instructions to reproduce the baseline (and later JEPA-NAV) are in our repository. \textbf{GitHub:} \url{https://github.com/your-org/JEPA-NAV} (replace with your public repo link; if not yet public, state: ``Repository will be made public upon course deadline.''). The repository includes README with setup (Habitat, V-JEPA 2, dependencies), data download links, training and evaluation commands (\texttt{scripts/train\_pointnav\_vjepa2\_simple\_scene.py}, \texttt{scripts/slurm/*.slurm}), config files, and seed (42) for reproducibility.
+
+%==============================================================================
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+
+
+\end{document}

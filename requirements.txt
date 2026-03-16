@@ -1,0 +1,38 @@
+# JEPA-NAV: requirements for venv
+# Create venv:  python -m venv .venv
+# Activate:     source .venv/bin/activate   (Linux/Mac)  or  .venv\Scripts\activate  (Windows)
+# Install:      pip install -r requirements.txt
+# GPU (CUDA):   pip install torch torchvision --index-url https://download.pytorch.org/whl/cu118  (then pip install -r requirements.txt)
+
+# Dataset download (ReplicaCAD from Hugging Face)
+huggingface_hub
+
+# Habitat (PointNav, ReplicaCAD)
+# habitat-sim: no pip wheel on many Linux systems; conda only has Python 3.9 builds.
+# See markdown/INSTALL_HABITAT_SIM.md — use a conda env with python=3.9, then:
+#   conda install -c aihabitat -c conda-forge habitat-sim headless
+habitat-lab
+
+# PyTorch
+torch
+torchvision
+
+# V-JEPA 2 encoder
+timm
+einops
+transformers
+
+# General ML / utils
+numpy
+opencv-python
+pillow
+pyyaml
+omegaconf
+hydra-core
+scipy
+tqdm
+imageio
+gym
+
+# Optional: training logs
+tensorboard
